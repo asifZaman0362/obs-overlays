@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .root-container {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 350%;
+            font-style: italic;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .front {
+            color: var(--col-foreground);
+            background-color: var(--col-accent);
+            --col-shadow: black;
+        }
+        .back {
+            color: var(--col-foreground-invert);
+            background-color: var(--col-accent-invert);
+            --col-shadow: white;
+        }
+        #back {
+            transition: background-color 2s, text-shadow 2s, color 2s;
+        }
+        #front {
+            position: absolute;
+            top: 0;
+            clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+            /* transition: clip-path 1s, background-color 2s, text-shadow 2s, color 2s; */
+            transition: clip-path 1s;
+        }
+        h1, h3 {
+            margin: 0;
+            text-shadow: 2px 2px 0 var(--col-shadow);
+        }
+        h3 {
+            font-weight: 200;
+        }
+        h1 {
+            font-size: 250%;
+        }
+        h1 .char {
+            --delay: calc((var(--char-index) + 1) * 100);
+            animation: sway 4000ms ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+        @keyframes sway {
+            0% {
+                margin-top: 0;
+            }
+            50% {
+                margin-top: -10px;
+            }
+            100% {
+                margin-top: 0;
+            }
+        }
+    </style>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <title>IdleScreen</title>
+</head>
+<body>
+    <div class="root-container back" id="back">
+        <div class="text-container">
+            <h3>sorting some stuff out,</h3>
+            <h1 data-splitting>be right back!</h1>
+        </div>
+    </div>
+    <div class="root-container front" id="front">
+        <div class="text-container">
+            <h3>sorting some stuff out,</h3>
+            <h1 data-splitting>be right back!</h1>
+        </div>
+    </div>
+    <script>
+        Splitting();
+
+        function format(fmtStr, vars) {
+            var x = 0;
+            var str = "";
+            for (var i = 0; i < fmtStr.length; i++) {
+                var char = fmtStr.charAt(i);
+                if (char == '$') str += vars[x++];
+                else str += char;
+            }
+            return str;
+        }
+
+        function clipPath(element) {
+            let x1 = Math.random() * 100;
+            let x2 = Math.random() * 100;
+            let x3 = Math.random() * 100;
+            let x4 = Math.random() * 100;
+            let y1 = Math.random() * 100;
+            let y2 = Math.random() * 100;
+            let y3 = Math.random() * 100;
+            let y4 = Math.random() * 100;
+            element.style.clipPath = format(
+                "polygon($% $%, $% $%, $% $%, $% $%)", 
+                [x1, y1, x2, y2, x3, y3, x4, y4]
+            );
+        }
+
+        function swapStyles(element1, element2) {
+            if (element1.classList.contains("back")) {
+                element1.classList.replace("back", "front");
+                element2.classList.replace("front", "back");
+            } else {
+                element1.classList.replace("front", "back");
+                element2.classList.replace("back", "front");
+            }
+        }
+
+        let backElement = document.getElementById("front");
+        let frontElement = document.getElementById("back");
+        setInterval(clipPath, 1010, backElement);
+        //setInterval(swapStyles, 5000, backElement, frontElement);
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+:root {
+    --col-accent: rgb(255, 49, 83);
+    --col-accent-invert: rgb(0, 206, 172);
+    --col-foreground: white;
+    --col-foreground-invert: black;
+}
+
+
+/* Copied from https://plex-vf-cdn.now.sh/style.css */
+
+/* Import fallback stylesheet */
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+
+/* Define variable font faces */
+@font-face {
+  font-family: 'Ibm Plex Sans Variable';
+  src: url('https://plex-vf-cdn.now.sh/Roman.woff2') format('woff2-variations'),
+    url('https://plex-vf-cdn.now.sh/Roman.woff2') format('woff2');
+  font-weight: 100 700;
+  font-stretch: 85 100;
+  font-display: fallback;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'IBM Plex Sans';
+}
