@@ -14,8 +14,8 @@
 /* Define variable font faces */
 @font-face {
   font-family: 'Ibm Plex Sans Variable';
-  src: url('https://plex-vf-cdn.now.sh/Roman.woff2') format('woff2-variations'),
-    url('https://plex-vf-cdn.now.sh/Roman.woff2') format('woff2');
+  src: url('https://plex-vf-cdn.now.sh/Italic.woff2') format('woff2-variations'),
+    url('https://plex-vf-cdn.now.sh/Italic.woff2') format('woff2');
   font-weight: 100 700;
   font-stretch: 85 100;
   font-display: fallback;
@@ -29,5 +29,5 @@ html, body {
 }
 
 body {
-    font-family: 'IBM Plex Sans';
+    font-family: 'IBM Plex Sans Variable';
 }
